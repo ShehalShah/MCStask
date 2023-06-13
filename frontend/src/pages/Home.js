@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Item from '../components/Item';
+
 const Home = () => {
   const [tasks, setTasks] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchTasks();
@@ -48,12 +51,26 @@ const Home = () => {
     }
   };
 
+  const handleAddTask = () => {
+    navigate('/form');
+  };
+
   return (
     <div className="task-list-container">
-      <h1>Task Management</h1>
+      <div className="header">
+        <h1>Task Management</h1>
+        <button className="add-button" onClick={handleAddTask}>
+          Add Task
+        </button>
+      </div>
       <ul className="task-list">
         {tasks.map((task) => (
-          <Item task={task} handleStatusUpdate={handleStatusUpdate} handleDelete={handleDelete} />
+          <Item
+            key={task._id}
+            task={task}
+            handleStatusUpdate={handleStatusUpdate}
+            handleDelete={handleDelete}
+          />
         ))}
       </ul>
     </div>

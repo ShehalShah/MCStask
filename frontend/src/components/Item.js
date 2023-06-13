@@ -2,9 +2,9 @@ import React from 'react';
 
 const Item = ({ task, handleStatusUpdate, handleDelete }) => {
   return (
-    <li key={task._id} className="task-item">
-      <h3>{task.title}</h3>
-      <p>{task.description}</p>
+    <div key={task._id} className="task-item">
+      <h3>Title: {task.title}</h3>
+      <p>Description: {task.description}</p>
       <p>Status: {task.status}</p>
       {task.status !== 'Completed' && (
         <button
@@ -17,7 +17,7 @@ const Item = ({ task, handleStatusUpdate, handleDelete }) => {
       <button onClick={() => handleDelete(task._id)} className="delete-button">
         Delete
       </button>
-    </li>
+    </div>
   );
 };
 
