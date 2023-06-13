@@ -10,7 +10,7 @@ app.use(cors());
 
 connectDB();
 
-app.use('/api', taskRoutes);
+app.use('/', taskRoutes);
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
