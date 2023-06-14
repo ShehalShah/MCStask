@@ -24,7 +24,7 @@ const Form = () => {
     }
 
     try {
-      await fetch('http://localhost:4000/tasks', {
+      await fetch('https://mcsbackexpress.adaptable.app/tasks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -12,7 +12,7 @@ const Home = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch('http://localhost:4000/tasks');
+      const response = await fetch('https://mcsbackexpress.adaptable.app/tasks');
       const data = await response.json();
       setTasks(data);
     } catch (error) {
@@ -22,7 +22,7 @@ const Home = () => {
 
   const handleStatusUpdate = async (id, status) => {
     try {
-      const response = await fetch(`http://localhost:4000/tasks/${id}`, {
+      const response = await fetch(`https://mcsbackexpress.adaptable.app/tasks/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:4000/tasks/${id}`, {
+      await fetch(`https://mcsbackexpress.adaptable.app/${id}`, {
         method: 'DELETE',
       });
       const updatedTasks = tasks.filter((task) => task._id !== id);
