@@ -41,7 +41,7 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`https://mcsbackexpress.adaptable.app/${id}`, {
+      await fetch(`https://mcsbackexpress.adaptable.app/tasks/${id}`, {
         method: 'DELETE',
       });
       const updatedTasks = tasks.filter((task) => task._id !== id);
