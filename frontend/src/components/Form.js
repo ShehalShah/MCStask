@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Form = () => {
   const nav = useNavigate();
   const [newTask, setNewTask] = useState({ title: '', description: '' });
+  const [errors, setErrors] = useState({ title: '', description: '' });
 
   const handleInputChange = (event) => {
     setNewTask({ ...newTask, [event.target.name]: event.target.value });
@@ -11,6 +12,17 @@ const Form = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!newTask.title.trim() || !newTask.description.trim()) {
+      setErrors({
+        title: !newTask.title.trim() ? 'Please enter a title' : '',
+        description: !newTask.description.trim()
+          ? 'Please enter a description'
+          : '',
+      });
+      return;
+    }
+
     try {
       await fetch('http://localhost:4000/tasks', {
         method: 'POST',
@@ -45,6 +57,7 @@ const Form = () => {
             value={newTask.title}
             onChange={handleInputChange}
           />
+          {errors.title && <p style={{color:"red"}} className="error-message">{errors.title}</p>}
           <input
             type="text"
             name="description"
@@ -52,6 +65,9 @@ const Form = () => {
             value={newTask.description}
             onChange={handleInputChange}
           />
+          {errors.description && (
+            <p style={{color:"red"}} className="error-message">{errors.description}</p>
+          )}
           <button type="submit" className="submit-button">
             Add Task
           </button>
